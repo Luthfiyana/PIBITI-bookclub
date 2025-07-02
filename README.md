@@ -1,8 +1,8 @@
 # Bookclub React Project
 
-Sebuah aplikasi web "Bookclub" yang dikembangkan sebagai bagian dari bootcamp ReactJS. Proyek ini dibangun untuk mendemonstrasikan penerapan materi dari Day 1 hingga Day 4, mencakup dasar-dasar React, hooks, routing, styling dengan Tailwind CSS, dan integrasi API.
+Sebuah aplikasi web "Bookclub" yang dikembangkan sebagai bagian dari pelatihan ReactJS PIBITI. Proyek ini dibangun untuk mendemonstrasikan penerapan materi dari Day 1 hingga Day 4, mencakup dasar-dasar React, hooks, routing, styling dengan Tailwind CSS, dan integrasi API.
 
-## Fitur Proyek (Berdasarkan Progres Bootcamp)
+## Fitur Proyek
 
 ### Day 1: React Vite & Components
 
@@ -53,39 +53,33 @@ Setiap _branch_ harian akan di-_merge_ ke `main` setelah pekerjaan hari tersebut
 ## Teknologi yang Digunakan
 
 - **ReactJS**
-- **Vite** (untuk _build tool_ dan _dev server_)
+- **Vite**
 - **Tailwind CSS** (untuk _styling_, akan diimplementasikan di Day 3)
 - **React Router Dom** (untuk _routing_, akan diimplementasikan di Day 3)
 - **Axios** (untuk _HTTP requests_, akan diimplementasikan di Day 4)
-- **JavaScript (ES6+)**
+- **JavaScript**
 
 ## Cara Menjalankan Proyek (Lokal)
 
-Pastikan Anda memiliki [Node.js](https://nodejs.org/) dan [npm](https://www.npmjs.com/) (atau [Yarn](https://yarnpkg.com/)) terinstal di sistem Anda.
+Pastikan Anda memiliki [Node.js](https://nodejs.org/) dan [npm](https://www.npmjs.com/) terinstal di sistem Anda.
 
 1.  **Clone repositori:**
 
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
-    cd YOUR_REPO_NAME
+    git clone [https://github.com/Luthfiyana/PIBITI-bookclub.git](https://github.com/Luthfiyana/PIBITI-bookclub.git)
+    cd PIBITI-bookclub
     ```
-
-    _(Ganti `YOUR_USERNAME` dan `YOUR_REPO_NAME` dengan detail repositori Anda.)_
 
 2.  **Install dependensi:**
 
     ```bash
     npm install
-    # atau
-    yarn install
     ```
 
 3.  **Jalankan aplikasi di development mode:**
 
     ```bash
     npm run dev
-    # atau
-    yarn dev
     ```
 
 4.  Buka browser Anda dan kunjungi `http://localhost:5173` (atau port lain yang ditunjukkan oleh Vite).
@@ -94,6 +88,6 @@ Pastikan Anda memiliki [Node.js](https://nodejs.org/) dan [npm](https://www.npmj
 
 ## Kontributor
 
-- luthfiyana (Nama Anda)
+- luthfiyana
 
 ---
