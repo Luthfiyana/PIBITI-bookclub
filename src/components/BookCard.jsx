@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, onAddToCart }) {
   return (
     <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col">
       <img
@@ -25,7 +25,10 @@ export default function BookCard({ book }) {
         <button className="mt-4 w-full bg-[#7F00FF] hover:bg-[#6f00e6] text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 shadow-md">
           Lihat Detail
         </button>
-        <button className="mt-2 w-full bg-[#00CFFF] hover:bg-[#00b8e0] text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 shadow-md">
+        <button
+          className="mt-4 w-full bg-[#E100FF] hover:bg-[#c100dd] text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 shadow-md"
+          onClick={() => onAddToCart(book)}
+        >
           Tambah ke Keranjang
         </button>
       </div>
