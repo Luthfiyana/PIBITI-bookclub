@@ -23,7 +23,7 @@ Sebuah aplikasi web "Bookclub" yang dikembangkan sebagai bagian dari pelatihan R
 ### Day 2: React Hooks - State dan Side Effects
 
 Berikut adalah pratinjau antarmuka setelah implementasi hooks di Day 2:
-![Day 2 Preview](src\assets\Day2_Preview.png)
+![Day 2 Preview](src/assets/Day2_Preview.png)
 
 1. **useState:** Digunakan untuk:
 
