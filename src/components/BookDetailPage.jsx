@@ -1,9 +1,27 @@
+// components/BookDetailPage.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate untuk kembali
 
-export default function BookDetailPage({ book }) {
+export default function BookDetailPage({ book, onAddToCart }) {
+  // Terima onAddToCart
+  const navigate = useNavigate(); // Hook untuk kembali
+
   if (!book) {
+    // Jika tidak ada buku (misal: refresh halaman detail langsung)
+    // Anda bisa arahkan kembali ke home atau tampilkan pesan error
+    // Untuk saat ini, kita akan arahkan kembali ke home
     return (
-      <div className="text-center text-gray-600">Buku tidak ditemukan.</div>
+      <div className="text-center p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
+        <p className="text-gray-600 mb-4">
+          Buku tidak ditemukan atau belum dipilih.
+        </p>
+        <button
+          onClick={() => navigate("/")}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300"
+        >
+          Kembali ke Daftar Buku
+        </button>
+      </div>
     );
   }
 
@@ -22,8 +40,17 @@ export default function BookDetailPage({ book }) {
         <h2 className="text-4xl font-bold text-gray-900 mb-3">{book.title}</h2>
         <p className="text-xl text-gray-700 mb-4">Oleh: {book.author}</p>
         <p className="text-gray-800 leading-relaxed mb-6">{book.description}</p>
-        <button className="bg-[#00CFFF] hover:bg-[00b8e0] text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg text-lg">
+        <button
+          className="bg-[#00CFFF] hover:bg-[#00b8e0] text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg text-lg"
+          onClick={() => onAddToCart(book)} // Panggil onAddToCart dari prop
+        >
           Tambah ke Keranjang
+        </button>
+        <button
+          onClick={() => navigate(-1)} // Tombol kembali ke halaman sebelumnya
+          className="ml-4 bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg text-lg"
+        >
+          Kembali
         </button>
       </div>
     </div>

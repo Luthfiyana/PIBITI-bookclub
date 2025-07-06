@@ -1,28 +1,38 @@
+// components/CartAndForm.jsx
 import React, { useState } from "react";
 
-export default function CartAndForm({ items, onRemoveItem, onClearCart }) {
+export default function CartAndForm({
+  items,
+  onRemoveItem,
+  onClearCart,
+  onSubmitBorrow, // Terima prop onSubmitBorrow
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
+  const [pickupTime, setPickupTime] = useState(""); // Tambahkan state untuk waktu
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!name || !email || !date) {
+    if (!name || !email || !date || !pickupTime) {
+      // Validasi waktu juga
       alert("Mohon lengkapi semua data.");
       return;
     }
 
-    alert(`Peminjaman diajukan oleh ${name} (${email}) pada ${date}.`);
+    // Panggil fungsi onSubmitBorrow dari App.jsx
+    onSubmitBorrow({
+      name,
+      email,
+      pickupDate: date,
+      pickupTime: pickupTime,
+    });
 
-    // Hapus baris ini agar keranjang tidak hilang setelah submit
-    // localStorage.removeItem("cartItems");
-    // onClearCart();
-
-    // Reset form (ini boleh tetap ada jika Anda ingin form-nya bersih setelah submit,
-    // tapi keranjang tidak akan kosong kecuali Anda sengaja mengosongkannya di App.jsx)
+    // Reset form
     setName("");
     setEmail("");
     setDate("");
+    setPickupTime("");
   }
 
   return (
@@ -56,6 +66,7 @@ export default function CartAndForm({ items, onRemoveItem, onClearCart }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="w-full border rounded px-3 py-2 text-sm"
+          required // Tambahkan atribut required
         />
         <input
           type="email"
@@ -63,12 +74,35 @@ export default function CartAndForm({ items, onRemoveItem, onClearCart }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full border rounded px-3 py-2 text-sm"
+          required
         />
+        <label
+          htmlFor="pickupDate"
+          className="block text-gray-700 text-sm font-bold mt-2"
+        >
+          Tanggal Pengambilan:
+        </label>
         <input
+          id="pickupDate"
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
           className="w-full border rounded px-3 py-2 text-sm"
+          required
+        />
+        <label
+          htmlFor="pickupTime"
+          className="block text-gray-700 text-sm font-bold mt-2"
+        >
+          Waktu Pengambilan:
+        </label>
+        <input
+          id="pickupTime"
+          type="time"
+          value={pickupTime}
+          onChange={(e) => setPickupTime(e.target.value)}
+          className="w-full border rounded px-3 py-2 text-sm"
+          required
         />
         <button
           type="submit"

@@ -1,3 +1,4 @@
+// components/BookList.jsx
 import React from "react";
 import BookCard from "./BookCard";
 import SearchBar from "./SearchBar";
@@ -5,6 +6,7 @@ import SearchBar from "./SearchBar";
 export default function BookList({
   books,
   onAddToCart,
+  onViewDetail, // Terima prop onViewDetail
   searchQuery,
   onSearch,
 }) {
@@ -21,7 +23,12 @@ export default function BookList({
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {filteredBooks.map((book) => (
-          <BookCard key={book.id} book={book} onAddToCart={onAddToCart} />
+          <BookCard
+            key={book.id}
+            book={book}
+            onAddToCart={onAddToCart}
+            onViewDetail={onViewDetail} // Teruskan prop ini ke BookCard
+          />
         ))}
         {filteredBooks.length === 0 && (
           <p className="text-center col-span-full text-gray-500">

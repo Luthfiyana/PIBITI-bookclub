@@ -1,15 +1,26 @@
+// App.jsx
 import React, { useState, useEffect } from "react";
 import "./App.css";
+
+import { Routes, Route, useNavigate } from "react-router-dom"; // Import Routes, Route, dan useNavigate
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Layout from "./components/Layout";
 import BookList from "./components/BookList";
 import CartAndForm from "./components/CartAndForm";
+import BookDetailPage from "./components/BookDetailPage"; // Pastikan ini diimport
+import ReceiptPage from "./components/ReceiptPage"; // Import komponen ReceiptPage yang baru
 
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  // State untuk menyimpan buku yang sedang dilihat detailnya
+  const [selectedBook, setSelectedBook] = useState(null);
+  // State untuk menyimpan data peminjaman yang akan ditampilkan di struk
+  const [borrowReceipt, setBorrowReceipt] = useState(null);
+
+  const navigate = useNavigate(); // Hook untuk navigasi programatik
 
   // Load dari localStorage saat awal
   useEffect(() => {
@@ -40,7 +51,33 @@ export default function App() {
     setCartItems([]);
   }
 
+  // Fungsi untuk menangani klik "Lihat Detail"
+  function handleViewBookDetail(book) {
+    setSelectedBook(book); // Set buku yang dipilih
+    navigate(`/book/${book.id}`); // Navigasi ke halaman detail buku
+  }
+
+  // Fungsi untuk menangani pengajuan peminjaman dari CartAndForm
+  function handleSubmitBorrow(borrowerInfo) {
+    if (cartItems.length === 0) {
+      alert("Keranjang peminjaman kosong!");
+      return;
+    }
+
+    const receiptData = {
+      ...borrowerInfo,
+      borrowedBooks: [...cartItems], // Salin buku dari keranjang
+      borrowDate: new Date().toLocaleDateString(), // Tanggal peminjaman saat ini
+      // Anda bisa generate ID transaksi yang lebih unik di sini
+      transactionId: `TX-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+    };
+    setBorrowReceipt(receiptData); // Simpan data struk
+    handleClearCart(); // Kosongkan keranjang setelah pengajuan
+    navigate("/receipt"); // Arahkan ke halaman struk
+  }
+
   const dummyBooks = [
+    // ... (data dummyBooks tetap sama)
     {
       id: "1",
       title: "The Great Gatsby",
@@ -165,21 +202,79 @@ export default function App() {
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           <div className="lg:col-span-3">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">
-              Daftar Buku Tersedia
-            </h2>
-            <BookList
-              books={dummyBooks}
-              onAddToCart={handleAddToCart}
-              searchQuery={searchQuery}
-              onSearch={setSearchQuery}
-            />
+            {/* Definisikan Rute di sini */}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                      Daftar Buku Tersedia
+                    </h2>
+                    <BookList
+                      books={dummyBooks}
+                      onAddToCart={handleAddToCart}
+                      onViewDetail={handleViewBookDetail} // Tambahkan prop ini
+                      searchQuery={searchQuery}
+                      onSearch={setSearchQuery}
+                    />
+                  </>
+                }
+              />
+              <Route
+                path="/book/:id" // Rute untuk detail buku, pakai parameter :id
+                element={<BookDetailPage book={selectedBook} />}
+              />
+              <Route
+                path="/receipt" // Rute untuk halaman struk
+                element={<ReceiptPage receipt={borrowReceipt} />}
+              />
+              {/* Tambahkan rute untuk halaman lain jika diperlukan (misal: /about) */}
+              <Route path="/about" element={<p>Halaman Tentang Kami</p>} />
+              <Route
+                path="/books"
+                element={
+                  // Rute buku mengarah ke daftar buku juga
+                  <>
+                    <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                      Daftar Buku Tersedia
+                    </h2>
+                    <BookList
+                      books={dummyBooks}
+                      onAddToCart={handleAddToCart}
+                      onViewDetail={handleViewBookDetail}
+                      searchQuery={searchQuery}
+                      onSearch={setSearchQuery}
+                    />
+                  </>
+                }
+              />
+              <Route
+                path="/cart"
+                element={
+                  // Rute cart mengarah ke daftar buku juga karena CartAndForm di sidebar
+                  <>
+                    <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                      Daftar Buku Tersedia
+                    </h2>
+                    <BookList
+                      books={dummyBooks}
+                      onAddToCart={handleAddToCart}
+                      onViewDetail={handleViewBookDetail}
+                      searchQuery={searchQuery}
+                      onSearch={setSearchQuery}
+                    />
+                  </>
+                }
+              />
+            </Routes>
           </div>
           <div className="lg:col-span-1">
             <CartAndForm
               items={cartItems}
               onRemoveItem={handleRemoveFromCart}
               onClearCart={handleClearCart}
+              onSubmitBorrow={handleSubmitBorrow} // Teruskan fungsi submit
             />
           </div>
         </div>

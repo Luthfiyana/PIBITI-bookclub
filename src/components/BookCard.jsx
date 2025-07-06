@@ -1,6 +1,8 @@
+// components/BookCard.jsx
 import React from "react";
 
-export default function BookCard({ book, onAddToCart }) {
+export default function BookCard({ book, onAddToCart, onViewDetail }) {
+  // Tambahkan onViewDetail
   return (
     <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col">
       <img
@@ -22,7 +24,10 @@ export default function BookCard({ book, onAddToCart }) {
             {book.description}
           </p>
         </div>
-        <button className="mt-4 w-full bg-[#7F00FF] hover:bg-[#6f00e6] text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 shadow-md">
+        <button
+          className="mt-4 w-full bg-[#7F00FF] hover:bg-[#6f00e6] text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 shadow-md"
+          onClick={() => onViewDetail(book)} // Panggil onViewDetail saat diklik
+        >
           Lihat Detail
         </button>
         <button
