@@ -67,11 +67,38 @@ Pada tahap ini, aplikasi difokuskan pada implementasi navigasi antar halaman, _s
 
 ---
 
-### Day 4: React API & Axios (Coming Soon)
+### Day 4: React API & Axios
 
-- **Integrasi API:** Mengambil data dari _free public API_ menggunakan Axios untuk menampilkan daftar buku dinamis atau detail lainnya.
-- **Display Data:** Menampilkan data yang diambil dari API di UI aplikasi.
-- **Contoh API yang Akan Digunakan:** (Akan diisi setelah materi Day 4 selesai, contoh: JSONPlaceholder, Open Library API, dll.)
+Pada tahap terakhir ini, aplikasi diintegrasikan dengan _fake API_ lokal menggunakan JSON Server dan Axios, serta menambahkan sistem notifikasi untuk _feedback_ pengguna yang lebih baik.
+
+**Detail Implementasi:**
+
+1.  **Integrasi API dengan JSON Server dan Axios:**
+    - **JSON Server:** Digunakan sebagai _mock backend_ lokal yang melayani data buku dari `data.json` di `http://localhost:5000`. Ini memungkinkan pengembangan _frontend_ tanpa ketergantungan pada _backend_ sungguhan.
+    - **Axios Instance (`src/api/index.js`):** Objek Axios kustom dibuat dengan `baseURL` yang mengarah ke JSON Server, memusatkan konfigurasi API.
+    - **`src/hooks/useBook.jsx`:**
+      - Fungsi `fetchBooks` menggunakan `axios.get('/books?q=${searchQuery}')` untuk mengambil daftar buku. JSON Server secara otomatis memfilter berdasarkan _query_ `q`.
+      - Menangani _loading state_ (`loading`) untuk menampilkan indikator pemuatan dan _error state_ (`error`) jika ada masalah dengan permintaan API.
+    - **`src/pages/BookDetailPage.jsx`:**
+      - Menggunakan `useParams` untuk mendapatkan `id` buku dari URL.
+      - Melakukan permintaan `axios.get('/books/${id}')` secara independen untuk mengambil detail buku spesifik, membuatnya _robust_ terhadap _refresh_ halaman langsung.
+      - Menampilkan _loading_ atau _error state_ di halaman detail.
+2.  **Sistem Notifikasi Kustom:**
+    - **`src/components/Notification.jsx`:** Sebuah komponen UI sederhana dibuat untuk menampilkan pesan notifikasi (_toast notification_). Notifikasi ini:
+      - Memiliki tipe (`success`, `warning`, `error`) yang menentukan warnanya.
+      - Muncul secara _fixed_ di pojok kanan atas layar (`top-4 right-4`).
+      - Secara otomatis menghilang setelah 3 detik atau dapat ditutup manual.
+    - **`src/hooks/useBook.jsx`:**
+      - Mengelola _state_ notifikasi (`notification`).
+      - Fungsi `showNotification` terpusat untuk memicu notifikasi dari berbagai _handler_ (misalnya, `handleAddToCart`, `handleSubmitBorrow`).
+    - **Penggunaan Notifikasi:**
+      - Memberi tahu pengguna ketika buku berhasil ditambahkan ke keranjang, atau jika buku sudah ada di keranjang.
+      - Memberikan _feedback_ yang lebih baik ketika keranjang kosong saat mencoba mengajukan peminjaman.
+      - Menampilkan pesan _error_ jika gagal mengambil data dari API.
+3.  **Refactoring Lanjutan:**
+    - `App.jsx` menjadi lebih ramping karena data `dummyBooks` dihapus dan diganti dengan data dari API melalui `useBook` _hook_.
+    - `BookList.jsx` dan `BookDetailPage.jsx` sekarang menampilkan status _loading_ dan _error_ yang diterima melalui _props_.
+    - `BookList` diatur agar bisa di-_scroll_ secara independen (`overflow-y-auto`, `max-height`), meningkatkan _user experience_ pada halaman beranda.
 
 ---
 
@@ -82,8 +109,8 @@ Repository ini diatur dengan strategi _branching_ yang mencerminkan progres hari
 - `main`: _Branch_ utama yang akan selalu berisi versi proyek yang paling stabil dan terkini (hasil gabungan dari semua hari).
 - `day-1`: Berisi implementasi materi Day 1 (React Vite dan Components).
 - `day-2`: Berisi implementasi materi Day 2 (React Hooks).
-- `day-3`: Akan berisi implementasi materi Day 3 (React Router dan Tailwind CSS).
-- `day-4`: Akan berisi implementasi materi Day 4 (React API dan Axios).
+- `day-3`: Berisi implementasi materi Day 3 (React Router dan Tailwind CSS).
+- `day-4`: Berisi implementasi materi Day 4 (React API dan Axios).
 
 Setiap _branch_ harian akan di-_merge_ ke `main` setelah pekerjaan hari tersebut selesai.
 
@@ -95,7 +122,8 @@ Setiap _branch_ harian akan di-_merge_ ke `main` setelah pekerjaan hari tersebut
 - **Vite**
 - **Tailwind CSS**
 - **React Router Dom**
-- **Axios** (untuk _HTTP requests_, akan diimplementasikan di Day 4)
+- **Axios** (untuk _HTTP requests_)
+- **JSON Server** (untuk _mock API_ lokal)
 - **JavaScript**
 
 ---
@@ -117,13 +145,20 @@ Pastikan Anda memiliki [Node.js](https://nodejs.org/) dan [npm](https://www.npmj
     npm install
     ```
 
-3.  **Jalankan aplikasi di development mode:**
+3.  **Siapkan dan Jalankan JSON Server (di terminal terpisah):**
+    Ini akan membuat _fake API_ lokal yang akan digunakan aplikasi Anda. Pastikan _file_ `data.json` ada di _root_ proyek.
+
+    ```bash
+    npx json-server --watch data.json --port 5000
+    ```
+
+4.  **Jalankan aplikasi di development mode (di terminal lain):**
 
     ```bash
     npm run dev
     ```
 
-4.  Buka browser Anda dan kunjungi `http://localhost:5173` (atau port lain yang ditunjukkan oleh Vite).
+5.  Buka browser Anda dan kunjungi `http://localhost:5173` (atau port lain yang ditunjukkan oleh Vite).
 
 ---
 
