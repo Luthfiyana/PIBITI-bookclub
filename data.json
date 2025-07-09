@@ -1,0 +1,109 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Gatsby",
+      "description": "Sebuah novel tentang era dua puluhan yang gemerlap, menceritakan tentang misteri jutawan Jay Gatsby."
+    },
+    {
+      "id": "2",
+      "title": "1984",
+      "author": "George Orwell",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=1984",
+      "description": "Sebuah novel distopia yang menggambarkan masyarakat totalitarian yang dikendalendalikan oleh 'Big Brother'."
+    },
+    {
+      "id": "3",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Mockingbird",
+      "description": "Kisah tentang ketidakadilan rasial di Amerika Selatan melalui mata seorang anak."
+    },
+    {
+      "id": "4",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Pride%26Prejudice",
+      "description": "Sebuah novel romantis klasik tentang cinta, kelas sosial, dan prasangka di Inggris abad ke-19."
+    },
+    {
+      "id": "5",
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Catcher",
+      "description": "Kisah Holden Caulfield, seorang remaja yang berjuang melawan alienasi dan kemunafikan dunia dewasa."
+    },
+    {
+      "id": "6",
+      "title": "Moby Dick",
+      "author": "Herman Melville",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=MobyDick",
+      "description": "Kisah epik tentang kapten Ahab dan obsesinya untuk memburu paus putih raksasa, Moby Dick."
+    },
+    {
+      "id": "7",
+      "title": "War and Peace",
+      "author": "Leo Tolstoy",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=War%26Peace",
+      "description": "Sebuah novel sejarah yang luas, melukiskan kehidupan masyarakat Rusia selama invasi Napoleon."
+    },
+    {
+      "id": "8",
+      "title": "The Odyssey",
+      "author": "Homer",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Odyssey",
+      "description": "Puisi epik Yunani kuno yang menceritakan perjalanan panjang Odysseus kembali ke rumah setelah Perang Troya."
+    },
+    {
+      "id": "9",
+      "title": "Crime and Punishment",
+      "author": "Fyodor Dostoevsky",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Crime%26Punishment",
+      "description": "Sebuah novel psikologis yang menyelami moralitas, kejahatan, dan penebusan dosa."
+    },
+    {
+      "id": "10",
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Hobbit",
+      "description": "Kisah petualangan Bilbo Baggins saat ia bergabung dengan para kurcaci dalam pencarian harta karun yang dijaga naga."
+    },
+    {
+      "id": "11",
+      "title": "Brave New World",
+      "author": "Aldous Huxley",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Brave%26New%26World",
+      "description": "Sebuah novel distopia yang menggambarkan masyarakat masa depan yang dikendalikan oleh teknologi dan konsumerisme."
+    },
+    {
+      "id": "12",
+      "title": "The Picture of Dorian Gray",
+      "author": "Oscar Wilde",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Picture%26Dorian%26Gray",
+      "description": "Kisah tentang Dorian Gray, seorang pemuda yang menemukan cara untuk tetap muda selamanya dengan mengorbankan jiwanya."
+    },
+    {
+      "id": "13",
+      "title": "Fahrenheit 451",
+      "author": "Ray Bradbury",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Fahrenheit%26451",
+      "description": "Sebuah novel distopia yang menggambarkan masyarakat di mana buku-buku dilarang dan 'pemadam kebakaran' membakar buku."
+    },
+    {
+      "id": "14",
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Alchemist",
+      "description": "Kisah perjalanan Santiago, seorang gembala muda, dalam pencarian harta karun dan makna hidup."
+    },
+    {
+      "id": "15",
+      "title": "The Brothers Karamazov",
+      "author": "Fyodor Dostoevsky",
+      "cover": "https://placehold.co/150x200/cccccc/333333?text=Brothers%26Karamazov",
+      "description": "Sebuah novel yang mendalami tema moralitas, kepercayaan, dan konflik keluarga melalui kisah tiga bersaudara."
+    }
+  ]
+}
