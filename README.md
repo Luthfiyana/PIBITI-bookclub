@@ -27,6 +27,7 @@ Sebuah aplikasi web "Bookclub" yang dikembangkan sebagai bagian dari pelatihan R
 ### Day 2: React Hooks - State dan Side Effects
 
 Berikut adalah pratinjau antarmuka setelah implementasi hooks di Day 2:
+![Halaman Beranda Preview](src/assets/Day2_Preview.png)
 
 1.  **useState:** Digunakan untuk:
     - Mengelola state lokal seperti: Data form (nama, email, tanggal).
@@ -106,12 +107,16 @@ Pada tahap terakhir ini, aplikasi diintegrasikan dengan _fake API_ lokal menggun
 Berikut adalah pratinjau tampilan utama aplikasi BookClub:
 
 **Halaman Beranda:**
+![Halaman Beranda Preview](src/assets/BerandaPreview.png)
 
 **Halaman Detail Buku:**
+![Halaman Beranda Preview](src/assets/BookDetailPreview.png)
 
 **Halaman Struk Peminjaman:**
+![Halaman Beranda Preview](src/assets/StrukPreview.png)
 
 **Notifikasi (contoh):**
+![Halaman Beranda Preview](src/assets/Notification.png)
 
 ---
 
