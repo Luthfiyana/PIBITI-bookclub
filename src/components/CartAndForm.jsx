@@ -66,7 +66,7 @@ export default function CartAndForm({
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="w-full border rounded px-3 py-2 text-sm"
-          required // Tambahkan atribut required
+          required
         />
         <input
           type="email"

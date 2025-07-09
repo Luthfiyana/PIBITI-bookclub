@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 export default function BookList({
   books,
   onAddToCart,
-  onViewDetail, // Terima prop onViewDetail
+  onViewDetail,
   searchQuery,
   onSearch,
 }) {

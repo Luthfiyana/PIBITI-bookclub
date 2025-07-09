@@ -1,4 +1,4 @@
-// components/BookDetailPage.jsx
+// pages/BookDetailPage.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate untuk kembali
 
@@ -7,9 +7,6 @@ export default function BookDetailPage({ book, onAddToCart }) {
   const navigate = useNavigate(); // Hook untuk kembali
 
   if (!book) {
-    // Jika tidak ada buku (misal: refresh halaman detail langsung)
-    // Anda bisa arahkan kembali ke home atau tampilkan pesan error
-    // Untuk saat ini, kita akan arahkan kembali ke home
     return (
       <div className="text-center p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
         <p className="text-gray-600 mb-4">

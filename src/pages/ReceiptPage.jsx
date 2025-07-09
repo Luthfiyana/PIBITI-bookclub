@@ -1,4 +1,4 @@
-// components/ReceiptPage.jsx
+// pages/ReceiptPage.jsx
 import React from "react";
 import { Link } from "react-router-dom"; // Import Link untuk navigasi kembali
 

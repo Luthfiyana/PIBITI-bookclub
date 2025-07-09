@@ -1,76 +1,42 @@
 // App.jsx
-import React, { useState, useEffect } from "react";
-import "./App.css";
+import React from "react";
+import "./index.css";
 
-import { Routes, Route, useNavigate } from "react-router-dom";
-
+// Import dari folder components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Layout from "./components/Layout";
 import BookList from "./components/BookList";
-import CartAndForm from "./components/CartAndForm"; // Tetap import
-import BookDetailPage from "./components/BookDetailPage";
-import ReceiptPage from "./components/ReceiptPage";
+import CartAndForm from "./components/CartAndForm";
+
+// Import dari folder pages
+import BookDetailPage from "./pages/BookDetailPage";
+import ReceiptPage from "./pages/ReceiptPage";
+
+// Import hook dari
+import useBook from "./hooks/useBook";
+
+import { Routes, Route } from "react-router-dom";
 
 export default function App() {
-  const [cartItems, setCartItems] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedBook, setSelectedBook] = useState(null);
-  const [borrowReceipt, setBorrowReceipt] = useState(null);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const savedCart = localStorage.getItem("cartItems");
-    if (savedCart) {
-      setCartItems(JSON.parse(savedCart));
-    }
-  }, []);
-
-  useEffect(() => {
-    document.title = `BookClub (${cartItems.length})`;
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  function handleAddToCart(book) {
-    const alreadyInCart = cartItems.some((item) => item.id === book.id);
-    if (!alreadyInCart) {
-      setCartItems((prev) => [...prev, book]);
-    }
-  }
-
-  function handleRemoveFromCart(itemId) {
-    setCartItems((prev) => prev.filter((item) => item.id !== itemId));
-  }
-
-  function handleClearCart() {
-    setCartItems([]);
-  }
-
-  function handleViewBookDetail(book) {
-    setSelectedBook(book);
-    navigate(`/book/${book.id}`);
-  }
-
-  function handleSubmitBorrow(borrowerInfo) {
-    if (cartItems.length === 0) {
-      alert("Keranjang peminjaman kosong!");
-      return;
-    }
-
-    const receiptData = {
-      ...borrowerInfo,
-      borrowedBooks: [...cartItems],
-      borrowDate: new Date().toLocaleDateString(),
-      transactionId: `TX-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-    };
-    setBorrowReceipt(receiptData);
-    handleClearCart();
-    navigate("/receipt");
-  }
+  const {
+    cartItems,
+    setCartItems,
+    searchQuery,
+    setSearchQuery,
+    selectedBook,
+    setSelectedBook,
+    borrowReceipt,
+    setBorrowReceipt,
+    handleAddToCart,
+    handleRemoveFromCart,
+    handleClearCart,
+    handleViewBookDetail,
+    handleSubmitBorrow,
+    navigate,
+  } = useBook();
 
   const dummyBooks = [
-    // ... (data dummyBooks tetap sama)
     {
       id: "1",
       title: "The Great Gatsby",
@@ -193,16 +159,13 @@ export default function App() {
     <Layout>
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
-        {/* Hapus grid lg:grid-cols-4 dan lg:col-span-1 dari sini */}
         <Routes>
           <Route
             path="/"
             element={
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                {" "}
-                {/* Tambahkan grid di sini */}
                 <div className="lg:col-span-3">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                  <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
                     Daftar Buku Tersedia
                   </h2>
                   <BookList
@@ -214,8 +177,6 @@ export default function App() {
                   />
                 </div>
                 <div className="lg:col-span-1">
-                  {" "}
-                  {/* Ini akan menjadi sidebar di halaman utama */}
                   <CartAndForm
                     items={cartItems}
                     onRemoveItem={handleRemoveFromCart}
@@ -239,38 +200,6 @@ export default function App() {
             path="/receipt"
             element={<ReceiptPage receipt={borrowReceipt} />}
           />
-          <Route path="/about" element={<p>Halaman Tentang Kami</p>} />
-          {/* Rute /books dan /cart tidak lagi perlu ada jika kontennya sama dengan / */}
-          {/* Atau jika Anda ingin /books hanya menampilkan BookList tanpa CartAndForm, Anda bisa mempertahankan rute ini */}
-          <Route
-            path="/books"
-            element={
-              <>
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">
-                  Daftar Buku Tersedia
-                </h2>
-                <BookList
-                  books={dummyBooks}
-                  onAddToCart={handleAddToCart}
-                  onViewDetail={handleViewBookDetail}
-                  searchQuery={searchQuery}
-                  onSearch={setSearchQuery}
-                />
-              </>
-            }
-          />
-          {/* Hapus rute /cart jika Anda tidak memerlukannya sebagai halaman terpisah */}
-          {/* <Route
-            path="/cart"
-            element={
-              <CartAndForm
-                items={cartItems}
-                onRemoveItem={handleRemoveFromCart}
-                onClearCart={handleClearCart}
-                onSubmitBorrow={handleSubmitBorrow}
-              />
-            }
-          /> */}
         </Routes>
       </main>
       <Footer />
