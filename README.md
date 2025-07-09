@@ -27,7 +27,6 @@ Sebuah aplikasi web "Bookclub" yang dikembangkan sebagai bagian dari pelatihan R
 ### Day 2: React Hooks - State dan Side Effects
 
 Berikut adalah pratinjau antarmuka setelah implementasi hooks di Day 2:
-![Day 2 Preview](src/assets/Day2_Preview.png)
 
 1.  **useState:** Digunakan untuk:
     - Mengelola state lokal seperti: Data form (nama, email, tanggal).
@@ -102,6 +101,20 @@ Pada tahap terakhir ini, aplikasi diintegrasikan dengan _fake API_ lokal menggun
 
 ---
 
+## Preview Aplikasi
+
+Berikut adalah pratinjau tampilan utama aplikasi BookClub:
+
+**Halaman Beranda:**
+
+**Halaman Detail Buku:**
+
+**Halaman Struk Peminjaman:**
+
+**Notifikasi (contoh):**
+
+---
+
 ## Struktur Repository (Branching Strategy)
 
 Repository ini diatur dengan strategi _branching_ yang mencerminkan progres harian bootcamp:
@@ -135,7 +148,7 @@ Pastikan Anda memiliki [Node.js](https://nodejs.org/) dan [npm](https://www.npmj
 1.  **Clone repositori:**
 
     ```bash
-    git clone [https://github.com/Luthfiyana/PIBITI-bookclub.git](https://github.com/Luthfiyana/PIBITI-bookclub.git)
+    git clone https://github.com/Luthfiyana/PIBITI-bookclub.git
     cd PIBITI-bookclub
     ```
 

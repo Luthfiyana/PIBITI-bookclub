@@ -50,7 +50,7 @@ export default function BookDetailPage({ onAddToCart }) {
         <p className="text-red-600 text-lg">Error: {error}</p>
         <button
           onClick={() => navigate("/")}
-          className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300"
+          className="mt-4 bg-[#E100FF] hover:bg-[#c100dd] text-white font-bold py-2 px-4 rounded-md transition-colors duration-300"
         >
           Kembali ke Daftar Buku
         </button>
@@ -88,7 +88,7 @@ export default function BookDetailPage({ onAddToCart }) {
         <p className="text-xl text-gray-700 mb-4">Oleh: {book.author}</p>
         <p className="text-gray-800 leading-relaxed mb-6">{book.description}</p>
         <button
-          className="bg-[#00CFFF] hover:bg-[#00b8e0] text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg text-lg"
+          className="bg-[#E100FF] hover:bg-[#c100dd] text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg text-lg"
           onClick={() => onAddToCart(book)}
         >
           Tambah ke Keranjang
